@@ -1,3 +1,4 @@
+#
 class vosupport::test {
   class { 'vosupport':
     supported_vos => [

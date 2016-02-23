@@ -9,7 +9,7 @@ class vosupport::vo_poolaccounts (
     ensure => directory,
     owner  => root,
     group  => root,
-    mode   => 0755,
+    mode   => '0755',
   }
 
   file { [
@@ -18,7 +18,7 @@ class vosupport::vo_poolaccounts (
     ensure => directory,
     owner  => root,
     group  => root,
-    mode   => 0755,
+    mode   => '0755',
   }
 
   file { '/home/grid':

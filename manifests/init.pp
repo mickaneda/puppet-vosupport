@@ -1,13 +1,14 @@
+#
 class vosupport (
   $supported_vos                = $vosupport::params::supported_vos,
   $enable_poolaccounts          = $vosupport::params::enable_poolaccounts,
-  $enable_mkgridmap_for_service = 
+  $enable_mkgridmap_for_service =
   $vosupport::params::enable_mkgridmap_for_service,
-  $enable_mappings_for_service  = 
+  $enable_mappings_for_service  =
   $vosupport::params::enable_mappings_for_service,
   $enable_environment           = $vosupport::params::enable_environment,
   $enable_voms                  = $vosupport::params::enable_voms,
-  $enable_gridmapdir_for_group  = 
+  $enable_gridmapdir_for_group  =
   $vosupport::params::enable_gridmapdir_for_group,
   $vomappingdata                = $vosupport::params::vomappingdata,
   $poolaccounts                 = $vosupport::params::poolaccounts,
@@ -20,7 +21,7 @@ class vosupport (
     source => 'puppet:///modules/vosupport/grid-env-funcs.sh',
     owner  => 'root',
     group  => 'root',
-    mode   => 0644,
+    mode   => '0644',
   }
 
   file { 'clean-grid-env-funcs.sh':
@@ -28,14 +29,14 @@ class vosupport (
     source => 'puppet:///modules/vosupport/clean-grid-env-funcs.sh',
     owner  => 'root',
     group  => 'root',
-    mode   => 0644,
+    mode   => '0644',
   }
 
   # create gridmapdir if necessary
   if $enable_gridmapdir_for_group != undef {
     file { '/etc/grid-security/gridmapdir':
       ensure  => directory,
-      mode    => 0770,
+      mode    => '0770',
       owner   => root,
       group   => $enable_gridmapdir_for_group,
       require => File['/etc/grid-security']
@@ -80,6 +81,6 @@ class vosupport (
     vomsservers                  => $vomsservers,
     configfile                   => $configfile,
   }
-  create_resources('vosupport::enable_vo', $supported_vos_hash, 
+  create_resources('vosupport::enable_vo', $supported_vos_hash,
   $supported_vos_params)
 }

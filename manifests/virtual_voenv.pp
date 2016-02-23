@@ -1,3 +1,4 @@
+#
 define vosupport::virtual_voenv (
   $voshortname   = $name,
   $vo_default_se = 'unset',

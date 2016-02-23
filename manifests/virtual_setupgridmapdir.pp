@@ -1,6 +1,7 @@
+#
 define vosupport::virtual_setupgridmapdir (
-  $prefix     = $name,
   $number,
+  $prefix     = $name,
   $start      = 1,
   $digits     = 3,
   $gridmapdir = '/etc/grid-security/gridmapdir',

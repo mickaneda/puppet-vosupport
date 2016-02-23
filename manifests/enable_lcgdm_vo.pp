@@ -1,11 +1,12 @@
+#
 define vosupport::enable_lcgdm_vo (
-  $voname                = $name,
-  $unprivilegedmkgridmap = false,
-  $gridservice           = 'LFC',
   $vomappingdata,
   $poolaccounts,
   $vomsservers,
-  $configfile,) {
+  $configfile,
+  $voname                = $name,
+  $unprivilegedmkgridmap = false,
+  $gridservice           = 'LFC',) {
   concat::fragment { "${voname}_lcgdmmkgridmapconf":
     target  => $configfile,
     order   => '08',

@@ -1,16 +1,16 @@
 # enables vosupport features (accounts, mappings, environment)
 define vosupport::enable_vo (
-  $voname      = $name,
+  $vomappingdata,
+  $poolaccounts,
+  $vomsservers,
+  $configfile,
+  $voname                       = $name,
   $enable_poolaccounts          = true,
   $enable_mappings_for_service  = undef,
   $enable_mkgridmap_for_service = undef,
   $enable_environment           = true,
-  $enable_voms = true,
-  $enable_gridmapdir            = false,
-  $vomappingdata,
-  $poolaccounts,
-  $vomsservers,
-  $configfile,) {
+  $enable_voms                  = true,
+  $enable_gridmapdir            = false,) {
   if ($enable_voms) {
     # lookup table for VO names in voms module, when the name of the voms module
     # is different from the VO name

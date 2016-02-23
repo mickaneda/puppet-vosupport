@@ -1,5 +1,6 @@
+#
 class vosupport::repositories {
-   yumrepo { 'epel':
+  yumrepo { 'epel':
     descr          => 'Extra Packages for Enterprise Linux 6 - $basearch',
     enabled        => 1,
     failovermethod => 'priority',

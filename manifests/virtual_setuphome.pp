@@ -1,6 +1,7 @@
+#
 define vosupport::virtual_setuphome (
-  $prefix   = $name,
   $number,
+  $prefix   = $name,
   $start    = 1,
   $digits   = 3,
   $homeroot = '/pool/grid',

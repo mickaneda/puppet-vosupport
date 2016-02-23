@@ -18,17 +18,17 @@ class vosupport::vo_lcgdm_mappings (
   }
 
   file {
-    "$mapfile":
+    $mapfile:
       ensure => present,
       owner  => root,
       group  => root,
-      mode   => 644;
+      mode   => '0644';
 
-    "$localmapfile":
+    $localmapfile:
       ensure => present,
       owner  => root,
       group  => root,
-      mode   => 644
+      mode   => '0644'
   }
 
   # for edg-mkgridmap
@@ -37,19 +37,16 @@ class vosupport::vo_lcgdm_mappings (
     require => Yumrepo['EMI_3_base'],
   }
 
+  $command = 'date; /usr/libexec/edg-mkgridmap/edg-mkgridmap.pl'
+  $params  = "--conf=${configfile} --output=${mapfile} --safe"
+
   cron { "${configfile}-cron":
-    command     => "(date; /usr/libexec/edg-mkgridmap/edg-mkgridmap.pl --conf=$configfile --output=$mapfile --safe) >> $logfile 2>&1",
+    command     => "(${command} ${params}) >> ${logfile} 2>&1",
     environment => 'PATH=/sbin:/bin:/usr/sbin:/usr/bin',
     user        => root,
-    hour        => [
-      5,
-      11,
-      18,
-      23],
+    hour        => [5, 11, 18, 23],
     minute      => 55,
-    require     => [
-      Concat[$configfile],
-      Package['edg-mkgridmap']]
+    require     => [Concat[$configfile], Package['edg-mkgridmap']]
   }
 }
 

@@ -14,7 +14,6 @@ class vosupport (
   $poolaccounts                 = $vosupport::params::poolaccounts,
   $vomsservers                  = $vosupport::params::vomsservers,
   $configfile                   = $vosupport::params::configfile,) {
-  include concat::setup
 
   file { 'grid-env-funcs.sh':
     path   => '/usr/libexec/grid-env-funcs.sh',

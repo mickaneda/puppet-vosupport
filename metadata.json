@@ -6,7 +6,7 @@
   "dependencies": [
     {
       "name": "puppetlabs/stdlib",
-      "version_requirement": "\u003e\u003d4.0.0"
+      "version_requirement": ">=4.0.0"
     },
     {
       "name": "rocha/voms",
@@ -14,7 +14,7 @@
     },
     {
       "name": "puppetlabs/concat",
-      "version_requirement": "\u003e\u003d1.0.0"
+      "version_requirement": ">=2.0.0"
     }
   ],
   "source": "https://github.com/cernops/puppet-vosupport.git",

@@ -4,45 +4,45 @@ class vosupport(
 {
 
   file {"grid-env-funcs.sh":
-    path => '/usr/libexec/grid-env-funcs.sh',
-    source => 'puppet:///modules/vosupport/grid-env-funcs.sh',
+    path => "/usr/libexec/grid-env-funcs.sh",
+    source => "puppet:///modules/vosupport/grid-env-funcs.sh",
     owner => "root",
     group => "root",
     mode => "0644",
   }
   file {"clean-grid-env-funcs.sh":
-    path => '/usr/libexec/clean-grid-env-funcs.sh',
-    source => 'puppet:///modules/vosupport/clean-grid-env-funcs.sh',
+    path => "/usr/libexec/clean-grid-env-funcs.sh",
+    source => "puppet:///modules/vosupport/clean-grid-env-funcs.sh",
     owner => "root",
     group => "root",
     mode => "0644",
   }
 
-  $gridenvfile = '/etc/profile.d/grid-vo-env.sh'
+  $gridenvfile = "/etc/profile.d/grid-vo-env.sh"
 
   concat{$gridenvfile:
-    owner =>  'root',
-    group =>  'root',
-    mode  =>  '0755',
+    owner =>  "root",
+    group =>  "root",
+    mode  =>  "0755",
     warn => "# $gridenvfile is managed by Puppet env.pp.\n#Any changes in here will be overwritten",
   }
 
-  concat::fragment{'grid-vo-env header':
+  concat::fragment{"grid-vo-env header":
     target  => $gridenvfile,
-    order   => '01',
-    content => template('vosupport/gridenvsh_header.erb')
+    order   => "01",
+    content => template("vosupport/gridenvsh_header.erb")
   }
   if $env_file {
     concat::fragment{'grid-vo-env others':
       target  => $gridenvfile,
-      order   => '50',
+      order   => "50",
       content => $env_file,
     }
   }
 
-  concat::fragment{'grid-vo-env footer':
+  concat::fragment{"grid-vo-env footer":
     target  => $gridenvfile,
-    order   => '99',
+    order   => "99",
     content => template('vosupport/gridenvsh_footer.erb')
   }
 
@@ -53,7 +53,7 @@ class vosupport(
     ensure => present,
     owner => "root",
     group => "root",
-    mode => 0755,
+    mode => "0755",
     content => template("vosupport/grid-vo-env.csh.erb"),
   }
 }

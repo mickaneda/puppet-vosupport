@@ -24,7 +24,7 @@ class vosupport(
     owner =>  "root",
     group =>  "root",
     mode  =>  "0755",
-    warn => "# $gridenvfile is managed by Puppet env.pp.\n#Any changes in here will be overwritten",
+    warn => "# $gridenvfile is managed by Puppet env.pp.\n#Any changes in here will be overwritten\n\n",
   }
 
   concat::fragment{"grid-vo-env header":
@@ -36,7 +36,7 @@ class vosupport(
     concat::fragment{'grid-vo-env others':
       target  => $gridenvfile,
       order   => "50",
-      content => $env_file,
+      source => $env_file,
     }
   }
 

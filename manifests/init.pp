@@ -1,5 +1,5 @@
 class vosupport(
-  $env_file = hiera("env_file","")
+  $env_file = lookup("env_file", {default_value => ""})
 )
 {
 
